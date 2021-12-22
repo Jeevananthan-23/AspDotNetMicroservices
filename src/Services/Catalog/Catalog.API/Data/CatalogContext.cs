@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace Catalog.API.Data
 {
-    public class CatalogContex : ICatalogContex
+    public class CatalogContext : ICatalogContext
     {
-        public CatalogContex(IConfiguration configution)
+        public CatalogContext(IConfiguration configution)
         {
             var client = new MongoClient(configution.GetValue<string>("DatabaseSettings:ConnectionString"));
             var database=client.GetDatabase(configution.GetValue<string>("DatabaseSettings:DatabaseName"));
             Products= database.GetCollection<Product>(configution.GetValue<string>("DatabaseSettings:CollectionName"));
+            CatalogContextSeed.SeedData(Products);
         }
 
         public IMongoCollection<Product> Products { get; }
