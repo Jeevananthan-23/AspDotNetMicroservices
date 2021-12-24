@@ -10,6 +10,8 @@ namespace Catalog.API.Data
 {
     public class CatalogContext : ICatalogContext
     {
+        
+
         public CatalogContext(IConfiguration configution)
         {
             var client = new MongoClient(configution.GetValue<string>("DatabaseSettings:ConnectionString"));
