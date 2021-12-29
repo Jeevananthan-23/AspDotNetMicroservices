@@ -17,9 +17,12 @@ namespace Catalog.API.Repositories
             _context = context;
         }
 
-        public async Task CreateProduct(Product product)
+        public async Task<Product> CreateProduct(Product product)
         {
-             await _context.Products.InsertOneAsync(product);
+                await _context.Products.InsertOneAsync(product);
+            //for unittest purpose
+            var newProduct = await GetProductsByName(product.Name);
+            return newProduct;
         }
 
         public async Task<bool> DeleteProduct(string id)
@@ -55,12 +58,13 @@ namespace Catalog.API.Repositories
                                .ToListAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetProductsByName(string name)
+        public async Task<Product> GetProductsByName(string name)
         {
             return await _context
                               .Products
-                               .Find(Builders<Product>.Filter.Eq(p => p.Name , name))
-                               .ToListAsync();
+                               .Find(Builders<Product>.Filter.Eq(p => p.Name, name))
+                               .FirstOrDefaultAsync();
+                              
         }
 
         public async Task<bool> UpdateProduct(Product product)
