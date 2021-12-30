@@ -29,7 +29,7 @@ namespace Catalog.UnitTest
         [Fact]
         public void TestCountProducts()
         {
-            var count = _productRepo.GetProducts().Result.Count();
+            int count = _productRepo.GetProducts().Result.Count();
             Assert.Equal(6, count);
         }
 

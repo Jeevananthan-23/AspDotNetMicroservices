@@ -8,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Catalog.API.Controllers
 {
@@ -31,6 +30,7 @@ namespace Catalog.API.Controllers
             var product = await _repository.GetProducts();
             return Ok(product);
         }
+
         [HttpGet("{id:length(24)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
@@ -60,12 +60,12 @@ namespace Catalog.API.Controllers
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductByName(string name)
+        public async Task<ActionResult> GetProductByName(string name)
         {
             var items = await _repository.GetProductsByName(name);
             if (items == null)
             {
-                _logger.LogError($"Products with name: {name} not found.");
+                //_logger.LogError($"Products with name: {name} not found.");
                 return NotFound();
             }
             return Ok(items);
