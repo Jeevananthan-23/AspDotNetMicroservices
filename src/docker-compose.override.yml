@@ -29,7 +29,7 @@ services:
   catalog.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSetting:ConnectionString=mongodb://catalogdb:27017"
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
     depends_on:
       - catalogdb
     ports:
