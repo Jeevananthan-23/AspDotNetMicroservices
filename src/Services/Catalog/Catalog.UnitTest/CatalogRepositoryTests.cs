@@ -10,8 +10,8 @@ namespace Catalog.UnitTest
 {
     public class CatalogRepositoryTests
     {
-        private CatalogContext _con;
-        private ProductRepo _productRepo;
+        private readonly CatalogContext _con;
+        private readonly ProductRepo _productRepo;
         public CatalogRepositoryTests()
         {
             _con = new CatalogContext(Connection.MongoDbConnectionUri());
