@@ -46,9 +46,9 @@ namespace Catalog.UnitTest
             var response = await _catalogController.GetProducts();
             var jsonResult = response.Result as OkObjectResult;
             Assert.NotNull(jsonResult);
-            var responseResult = (Product)jsonResult.Value ;
+            var responseResult = (List<Product>)jsonResult.Value ;
             Assert.NotNull(responseResult);
-            Assert.Equal(6, responseResult.Id.Count());
+            Assert.Equal(6, responseResult.Count);
         }
     }
 }
