@@ -3,19 +3,27 @@ version: '3.4'
 services:
   catalogdb:
     image: mongo
+
   basketdb:
     image: redis:alpine
   discountdb:
     image: postgres
+
+  orderdb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
   pgadmin:
     image: dpage/pgadmin4  
+
   portainer:
     image: portainer/portainer-ce
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
+
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
     build:
