@@ -1,6 +1,7 @@
 using Basket.API.grpcServices;
 using Basket.API.Repository;
 using Discount.gRPC.Protos;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,8 @@ namespace Basket.API
             });
             services.AddScoped<IBasketRepo, BasketRepository>();
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
+
             //Swagger
             services.AddSwaggerGen(c =>
             {
@@ -44,6 +47,15 @@ namespace Basket.API
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
                         (o => o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]));
             services.AddScoped<DiscountGrpcService>();
+
+            // MassTransit-RabbitMQ Configuration
+            services.AddMassTransit(config => {
+                config.UsingRabbitMq((ctx, cfg) => {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                    cfg.UseHealthCheck(ctx);
+                });
+            });
+            services.AddMassTransitHostedService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
