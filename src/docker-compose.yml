@@ -60,11 +60,18 @@ services:
       context: .
       dockerfile: APIGateway/OcelotApiGW/Dockerfile
 
+  shopping.aggregator:
+    image: ${DOCKER_REGISTRY-}shoppingaggregator
+    build:
+      context: .
+      dockerfile: APIGateway/Shopping.Aggregator/Dockerfile
+
 volumes:
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
+
 
 
 
