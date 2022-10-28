@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: execute
-        run: docker-compose -f ./scr/docker-compose.override.yml run dotnet
+        run: docker-compose -f ./src/docker-compose.override.yml run dotnet
