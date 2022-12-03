@@ -1,0 +1,15 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [feature-gitflowimplementation]
+  pull_request:
+    branches: [feature-gitflowimplementation]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@v2
+      - name: dockertest
+        run: docker-compose -f ./src/docker-compose.yml -f ./src/docker-compose.override.yml run catalog.api_unittest
