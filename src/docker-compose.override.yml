@@ -77,6 +77,23 @@ services:
     ports:
       - "8000:80"
 
+
+  catalog.api_unittest:
+     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
+     depends_on:
+      - catalogdb
+     ports:
+      - "8000:80"
+     entrypoint:
+        - dotnet
+        - test
+        - --logger
+        - trx;LogFileName=/tests/catalog-functional-test-results.xml
+
+
+
   basket.api:
      environment:
       - ASPNETCORE_ENVIRONMENT=Development

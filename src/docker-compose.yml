@@ -30,6 +30,13 @@ services:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
 
+  catalog.api_unittest:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+      target: unittest
+
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
     build:
