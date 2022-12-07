@@ -19,10 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Authenticate with Docker Hub
-        run: docker login -u "jeeva23"  -p "$DOCKER_PASSWORD"
+        run: docker login -u "$DOCKER_USERNAME"  -p "$DOCKER_PASSWORD"
         env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USER_NAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASS_CODE }}
-      - name: build Docker image
-        run: docker build -t catalog.api:v1 -f src/Services/Catalog/Catalog.API/Dockerfile .
       - name: push Docker image
-        run: docker push jeeva23/catalog.api
+        run: docker push ${{ secrets.DOCKER_USER_NAME }}/catalog.api
