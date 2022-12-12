@@ -24,6 +24,7 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USER_NAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASS_CODE }}
       - name: Building Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USER_NAME }}/catalog.api:v1 -f src/Services/Catalog/Catalog.API/Dockerfile .
+        working-directory: ./src/Services/Catalog/Catalog.API
+        run: docker build .. -f ./Dockerfile -t ${{ secrets.DOCKER_USER_NAME }}/catalog.api:v1 
       - name: Push the Image
         run: docker push ${{ secrets.DOCKER_USER_NAME }}/catalog.api
