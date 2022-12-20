@@ -2,6 +2,7 @@
 Building Microservices on .Net which used Asp.Net Web API, Docker, RabbitMQ,Ocelot API Gateway, MongoDB,Redis,SqlServer
 See the overall picture of **implementations on microservices with .net tools** on real-world **e-commerce microservices** project;
 
+![CI&CD](https://github.com/Jeevananthan-23/AspDotNetMicroservices/actions/workflows/dotnet.yml/badge.svg)
 ![microservices_remastered](https://user-images.githubusercontent.com/1147445/110304529-c5b70180-800c-11eb-832b-a2751b5bda76.png)
 
 There is a couple of microservices which implemented **e-commerce** modules over **Catalog, Basket, Discount** and **Ordering** microservices with **NoSQL (MongoDB, Redis)** and **Relational databases (PostgreSQL, Sql Server)** with communicating over **RabbitMQ Event Driven Communication** and using **Ocelot API Gateway**.
